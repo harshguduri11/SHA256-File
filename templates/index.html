@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HashGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🔒 HashGuard – Cybersecurity File Integrity Checker</h1>
+    <p class="subtitle">Cyber Security Tool</p>
+
+    <div class="file-box">
+        📁 Selected File: {{ filename }}
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <input type="file" name="file">
+
+        <div class="buttons">
+            <button name="action" value="generate">Generate Hash</button>
+            <button name="action" value="verify">Verify File</button>
+        </div>
+
+        <textarea name="original_hash" placeholder="Enter Original Hash"></textarea>
+
+        <div class="hash-box">
+            <h3>SHA-256 Hash:</h3>
+            <textarea readonly>{{ generated_hash }}</textarea>
+        </div>
+
+        <div class="result">
+            <h3>Verification Result:</h3>
+            <p>{{ result }}</p>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
