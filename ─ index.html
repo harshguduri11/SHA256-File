@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Integrity Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function copyHash() {
+            const text = document.getElementById("hash").innerText;
+            navigator.clipboard.writeText(text);
+            alert("Hash copied!");
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h1>🔒 File Integrity Checker</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required><br>
+        <input type="text" name="original_hash" placeholder="Enter original hash"><br>
+        <button type="submit">Generate & Verify</button>
+    </form>
+
+    {% if generated_hash %}
+    <div class="hash-box">
+        <h3>Generated Hash:</h3>
+        <p id="hash">{{ generated_hash }}</p>
+        <button onclick="copyHash()">Copy</button>
+    </div>
+    {% endif %}
+
+    {% if result %}
+    <div class="result">
+        <h2>{{ result }}</h2>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
